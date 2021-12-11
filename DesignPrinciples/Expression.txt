@@ -1,0 +1,13 @@
+1. What design principles does this code violate?
+	Thou shalt keep it simple.
+2. Refactor the code to improve its design.
+
+
+if (!((score > CREDI_SCORE)))
+   reject();
+else if (!((income >= MIN_INCOME) && (income <= MAX_INCOME) && authorized && (score > CREDIT_SCORE)))
+   reject();
+else if (!(income > MAX_INCOME))
+	reject();
+else
+   accept();

@@ -1,0 +1,22 @@
+1. What design principles does this code violate?
+	Singleton and Hyper Decomposition. RetirementCalculator should not have methods that employee
+	should have. In addition, there would only be one method left in RetirementCalculator after
+	we move things. That is the Hyper Decomposition. Move that to Employee to in this case.
+	
+2. Refactor the code to improve its design.
+
+
+class Employee {
+    …
+    private Date payPeriodStart;
+    private Date payPeriodEnd;
+    private Date employmentStartDate;
+    private Date employmentEndDate;
+    
+    public float calculateRetirement(Date payPeriodStart, Date payPeriodEnd) { … }
+    
+    private int getTotalYearsOfService(Date startDate, Date endDate) { … }
+
+    private int getMonthsInLastPosition(Date startDate, Date endDate) { … }
+    ...  
+}

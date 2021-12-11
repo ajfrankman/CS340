@@ -1,0 +1,33 @@
+1. What design principles does this code violate?
+	Code Duplication
+2. Refactor the code to improve its design.
+
+public int validateProperty(String valueString, int value) {
+  if (valueString == null) {
+    throw new MissingPropertiesException("duration");
+  }
+
+  value = Integer.parseInt(valueString);
+  if (value <= 0) {
+    throw new MissingPropertiesException("duration > 0");
+  }
+  if ((value % checkInterval) != 0) {
+    throw new MissingPropertiesException("duration % checkInterval");
+  }
+  return value
+}
+
+public void getTimes(Properties props) throws Exception {
+  String valueString;
+  int value;
+
+  valueString = props.getProperty("interval");
+  checkInterval = validateProperty(valueString, value);
+
+  valueString = props.getProperty("duration");
+  monitorTime = validateProperty(valueString, value);
+
+  valueString = props.getProperty("departure");
+  departureOffset = validateProperty(valueString, value);
+}
+

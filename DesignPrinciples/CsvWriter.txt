@@ -1,0 +1,54 @@
+1. What design principles does this program violate?
+	Single Responsibility Principle. It should not decided
+	to send this to system.out unless we tell it to.
+	
+2. Refactor the program to improve its design.
+	
+
+CsvWriter.java
+
+public class CsvWriter {
+	OutputStream stream;
+	
+	public CsvWriter(OutputStream stream) {
+		this.stream = stream;
+	}
+
+	public void write(String[][] lines) {
+		for (int i = 0; i < lines.length; i++)
+			writeLine(lines[i]);
+	}
+
+	private void writeLine(String[] fields) {
+		if (fields.length == 0)
+			stream.print()
+		else {
+			writeField(fields[0]);
+
+			for (int i = 1; i < fields.length; i++) {
+				stream.print(",");
+				writeField(fields[i]);
+			}
+			stream.println();
+		}
+	}
+
+	private void writeField(String field) {
+		if (field.indexOf(',') != -1 || field.indexOf('\"') != -1)
+			writeQuoted(field);
+		else
+			stream.print(field);
+	}
+
+	private void writeQuoted(String field) {
+		System.out.print('\"');
+		for (int i = 0; i < field.length(); i++) {
+			char c = field.charAt(i);
+			if (c == '\"')
+				stream.print("\"\"");
+			else
+				stream.print(c);
+		}
+		stream.print('\"');
+	}
+}
